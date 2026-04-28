@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GestureOS Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Bricolage+Grotesque:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Local AI Vision Studio</p>
+          <h1>GestureOS Studio</h1>
+        </div>
+        <div class="top-actions">
+          <span id="privacy-pill" class="privacy-pill">Local camera</span>
+          <button id="start-btn" class="btn primary">Start</button>
+          <button id="stop-btn" class="btn">Stop</button>
+        </div>
+      </header>
+
+      <section class="workspace">
+        <aside class="panel left-panel">
+          <div class="panel-head">
+            <span>Modes</span>
+            <strong id="active-mode-label">Presenter</strong>
+          </div>
+          <div class="mode-grid" role="group" aria-label="Studio mode">
+            <button class="mode-btn active" data-mode="presenter">Presenter</button>
+            <button class="mode-btn" data-mode="dataset">Dataset</button>
+            <button class="mode-btn" data-mode="creator">Creator</button>
+          </div>
+
+          <div class="command-stack">
+            <article class="command-card">
+              <span>Swipe Left</span>
+              <strong>Previous</strong>
+            </article>
+            <article class="command-card">
+              <span>Swipe Right</span>
+              <strong>Next</strong>
+            </article>
+            <article class="command-card">
+              <span>Pinch</span>
+              <strong>Keyframe</strong>
+            </article>
+            <article class="command-card">
+              <span>Fist</span>
+              <strong>Marker</strong>
+            </article>
+            <article class="command-card">
+              <span>Peace</span>
+              <strong>Highlight</strong>
+            </article>
+          </div>
+        </aside>
+
+        <section class="stage-panel">
+          <div class="screen-frame">
+            <canvas id="output-canvas" width="1280" height="720"></canvas>
+            <video id="input-video" autoplay muted playsinline></video>
+            <div class="hud">
+              <div class="hud-pill">
+                <span>Gesture</span>
+                <strong id="gesture-value">Waiting...</strong>
+              </div>
+              <div class="hud-pill">
+                <span>Confidence</span>
+                <strong id="confidence-value">0%</strong>
+              </div>
+              <div class="hud-pill">
+                <span>Action</span>
+                <strong id="action-value">Idle</strong>
+              </div>
+            </div>
+            <div id="gesture-burst" class="gesture-burst">Ready</div>
+          </div>
+
+          <div class="timeline-panel">
+            <div class="timeline-head">
+              <span>Session Timeline</span>
+              <strong id="session-duration">00:00</strong>
+            </div>
+            <div id="timeline-list" class="timeline-list">
+              <span class="empty-state">No events yet</span>
+            </div>
+          </div>
+        </section>
+
+        <aside class="panel right-panel">
+          <div class="panel-head">
+            <span>Live Metrics</span>
+            <strong id="recording-state">Standby</strong>
+          </div>
+          <div class="stats-grid">
+            <div class="stat">
+              <span>Hands</span>
+              <strong id="hands-count">0</strong>
+            </div>
+            <div class="stat">
+              <span>FPS</span>
+              <strong id="fps-value">0</strong>
+            </div>
+            <div class="stat">
+              <span>Samples</span>
+              <strong id="samples-count">0</strong>
+            </div>
+            <div class="stat">
+              <span>Slide</span>
+              <strong id="slide-index">1</strong>
+            </div>
+          </div>
+
+          <label class="control-field" for="trail-intensity">
+            Trail
+            <input id="trail-intensity" type="range" min="0" max="30" value="16" />
+          </label>
+
+          <div class="segmented" role="group" aria-label="Render style">
+            <button class="segment active" data-render="neon">Neon</button>
+            <button class="segment" data-render="clean">Clean</button>
+            <button class="segment" data-render="debug">Debug</button>
+          </div>
+
+          <div class="button-row">
+            <button id="record-btn" class="btn accent">Record</button>
+            <button id="calibrate-btn" class="btn">Calibrate</button>
+          </div>
+          <div class="button-row">
+            <button id="capture-btn" class="btn">PNG</button>
+            <button id="export-json-btn" class="btn">JSON</button>
+            <button id="export-csv-btn" class="btn">CSV</button>
+          </div>
+
+          <div class="insight-card">
+            <span>Dominant gesture</span>
+            <strong id="dominant-gesture">None</strong>
+            <div id="gesture-bars" class="gesture-bars"></div>
+          </div>
+
+          <p id="status-text" class="status" data-state="idle">Ready.</p>
+        </aside>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script defer src="./app.js"></script>
+  </body>
+</html>
