@@ -1,37 +1,49 @@
 # GestureOS Studio
 
-GestureOS Studio is a local-first webcam gesture workspace. It turns hand
-motion into a practical control, capture, and dataset tool that can support
-presentations, creator workflows, accessibility experiments, and ML data
-collection.
+GestureOS Studio is a local-first hand tracking web app that turns a webcam
+into a practical gesture control system. It is designed for real use, not just
+visual demo effects.
 
-## Run
+## Why This Project
+
+GestureOS Studio helps with real workflows:
+
+- Presentation control with gesture-triggered actions
+- Creator capture with gesture timeline + frame exports
+- Dataset collection for computer vision and ML experiments
+- Accessibility and touchless interaction prototyping
+
+## Core Features
+
+- Realtime webcam preview with MediaPipe Hands tracking
+- Gesture detection: `Swipe`, `Pinch`, `Fist`, `Peace`, `Point`, `Open Palm`
+- Studio modes: `Presenter`, `Dataset`, `Creator`
+- Render styles: `Neon`, `Clean`, `Debug`
+- Session timeline with gesture events and action mapping
+- Calibration support for cleaner session consistency
+- Export tools:
+  - `PNG` for captured frames
+  - `JSON` for full session and landmarks
+  - `CSV` for event logs
+- Local-first behavior: camera data stays in-browser unless exported
+
+## Quick Start
 
 ```bash
 cd "/Users/ravithakur/Downloads/Gesture Project "
 python3 -m http.server 8081
 ```
 
-Open:
+Open in browser:
 
 `http://127.0.0.1:8081`
 
-Use the localhost URL for camera testing. Opening `index.html` directly from
-Finder can block webcam permissions in some browsers.
+Important:
 
-## What Makes It Valuable
+- Use localhost for camera permission
+- Do not open `index.html` directly from Finder for webcam testing
 
-- Native browser camera startup with clear permission diagnostics
-- MediaPipe hand tracking layered over a live camera preview
-- Three working modes: `Presenter`, `Dataset`, and `Creator`
-- Gesture command map for slide-style control and key moments
-- Session recording with event timeline and gesture frequency analytics
-- Calibration snapshot for session consistency
-- Exportable `PNG`, `JSON`, and `CSV` assets
-- Render styles: `Neon`, `Clean`, and `Debug`
-- Local-first design: webcam data stays in the browser unless exported
-
-## Gesture Actions
+## Gesture Action Map
 
 - `Swipe Left` -> Previous
 - `Swipe Right` -> Next
@@ -40,3 +52,22 @@ Finder can block webcam permissions in some browsers.
 - `Peace` -> Highlight
 - `Open Palm` -> Ready
 - `Point` -> Pointer
+
+## Keyboard Shortcuts
+
+- `Space` -> Capture frame
+- `R` -> Start or pause recording
+
+## Troubleshooting
+
+- Camera blocked: allow camera permission in browser settings
+- Camera busy: close other apps using webcam
+- Tracking not loading: check internet connectivity for MediaPipe CDN
+- Blank output: run via localhost URL, not file open
+
+## Tech Stack
+
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- MediaPipe Hands
