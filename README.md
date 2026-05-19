@@ -72,5 +72,3 @@ Important:
 - Vanilla JavaScript
 - MediaPipe Hands
 
-
-/.
